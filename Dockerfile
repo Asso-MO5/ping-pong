@@ -6,8 +6,7 @@ FROM base AS dependencies
 
 COPY package*.json ./
 
-RUN npm install
-RUN npm run build
+RUN npm install && npm run build
 
 FROM dependencies AS build
 
