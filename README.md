@@ -51,12 +51,12 @@ server {
 server {
         listen 80;
         listen [::]:80;
-        server_name ping.kazerlelutin.space;
+        server_name pong.kazerlelutin.space;
         return 301 https://$host$request_uri;
 }
 
 server {
-        server_name ping.kazerlelutin.space;
+        server_name pong.kazerlelutin.space;
 
         location / {
                 proxy_pass http://51.15.225.140:3901;
