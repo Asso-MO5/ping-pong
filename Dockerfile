@@ -14,7 +14,6 @@ WORKDIR /app
 
 COPY src /app/src
 COPY tsconfig.json /app
-COPY .env /app
 
 USER node
 
