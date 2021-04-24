@@ -31,9 +31,9 @@ router.get("/", async (ctx, next) => {
   ctx.body = "Ping Pong is online !"
 });
 
-router.post("/room/:room", async (ctx, next) => {
+router.post("/room", async (ctx, next) => {
   const 
-    {room} = ctx.params,
+    {room, message} = ctx.request.body,
     isProtectRoom  = registerApp.find((it:registerApp) => room.includes(it.prefix));
 
     if(isProtectRoom){
@@ -42,13 +42,13 @@ router.post("/room/:room", async (ctx, next) => {
           it.key === ctx.request.header.authorization.replace('Bearer ','') 
         );
       if(canAccess){
-        io.emit(room,ctx.request.body);
+        io.emit(room,message);
       }else {
         ctx.status = 403;
         ctx.body = "interdit";
       }
     } else {
-      io.emit(room,ctx.request.body);
+      io.emit(room,message);
     }
   ctx.body = {res: "pong"}
 });
